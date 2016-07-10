@@ -1,0 +1,13 @@
+{
+  "plugins": {
+    "weather": {
+      "niceName": "Oakland, CA",
+      "apiKey": "ef877f97dad9e4c6247a0ea061d3a0d8",
+      "latitude": "37.804",
+      "longitude": "-122.271"
+    },
+    "stocks": {
+      "companies": ["AYI", "TSLA"]
+    }
+  }
+}

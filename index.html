@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Persona</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        display: flex;
+        flex-direction: column;
+
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        background-color: black;
+
+        -webkit-user-select: none;
+        overflow: hidden !important;
+      }
+
+      .header {
+        display: flex;
+        flex-direction: row;
+
+        height: 300px;
+        width: 100%;
+        margin-top: 50px;
+
+        color: white;
+        font-family: 'Lato';
+      }
+
+      .datetime-container {
+        display: none;
+        flex-direction: column;
+
+        height: 300px;
+
+        padding-left: 200px;
+        padding-top: 75px;
+        padding-bottom: 75px;
+      }
+
+      .time {
+        font-size: 72px;
+        line-height: 100px;
+        font-weight: 200;
+      }
+
+      .date {
+        font-size: 36px;
+        line-height: 50px;
+        font-weight: 400;
+
+        opacity: 0.5;
+
+        text-align: right;
+      }
+
+      .voice {
+        width: 186px;
+        height: 186px;
+        margin: 57px;
+        margin-right: 200px;
+
+        border: 2px solid #3498db;
+        border-radius: 50%;
+
+        color: #3498db;
+
+      }
+
+      .voice .material-icons {
+        font-size: 64px;
+        line-height: 182px;
+        width: 182px;
+        text-align: center;
+      }
+
+      .indicator-container {
+        position: relative;
+        display: none;
+        height: 72px;
+        margin-bottom: 42px;
+      }
+
+      .indicator-container.animated {
+        transition: transform 400ms ease;
+      }
+
+      .indicator {
+        transition: all 300ms ease;
+        height: 52px;
+        width: 52px;
+        padding: 12px;
+        border-radius: 50%;
+        margin-left: 32px;
+        color: white;
+        opacity: 0.6;
+      }
+
+      .indicator .material-icons {
+        font-size: 28px;
+      }
+
+      .indicator.active {
+        background-color: rgba(255,255,255,0.2);
+        transform: scale(1.1);
+        opacity: 1;
+      }
+
+      .indicator-text {
+        display: none;
+
+        height: 36px;
+        line-height: 36px;
+        font-size: 24px;
+        margin-bottom: 16px;
+
+        font-family: 'Lato';
+        font-weight: 500;
+
+        color: white;
+        text-align: center;
+
+        color: rgba(255,255,255,0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <div class="datetime-container">
+        <span class="time"></span>
+        <span class="date"></span>
+      </div>
+
+      <div style="flex: 1;"></div>
+      <div class="voice">
+        <i class="material-icons">keyboard_voice</i>
+      </div>
+    </div>
+
+    <div style="flex: 1;"></div>
+    <div class="indicator-text"></div>
+    <div class="indicator-container"></div>
+
+    <script src='https://code.responsivevoice.org/responsivevoice.js'></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/annyang/2.4.0/annyang.min.js"></script>
+
+    <script src="js/util.js"></script>
+    <script src="js/api.js"></script>
+
+    <script src="js/time.js"></script>
+    <script src="js/indicator.js"></script>
+    <script src="js/loader.js"></script>
+
+    <script>
+      document.querySelector(".voice").addEventListener("click", function() {
+        responsiveVoice.speak("Hello, my name is Persona. I don't believe we've met. Feel free to make yourself at home. You can call me at any time by saying, 'Hey Persona'. I'll try to help you with whatever you need.", "UK English Male");
+      });
+
+      loadPersona().then(() => {
+        manageTime();
+        manageIndicators();
+      });
+    </script>
+  </body>
+</html>
